@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<TelegramService>();
-builder.Services.AddSingleton<ITelegramBotClient>(new TelegramBotClient("7227518067:AAHHgor5LphGrmXfTEghZ5qGCalJ7CAkvZc"));
+builder.Services.AddSingleton<ITelegramBotClient>(new TelegramBotClient(""));
 
 var app = builder.Build();
 
