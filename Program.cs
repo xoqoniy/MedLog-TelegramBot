@@ -1,5 +1,5 @@
+using Microsoft.Extensions.Configuration;
 using Telegram.Bot;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,8 +8,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Add user secrets
+
 builder.Services.AddScoped<TelegramService>();
-builder.Services.AddSingleton<ITelegramBotClient>(new TelegramBotClient(""));
+// Retrieve the token from configuration
+builder.Configuration.AddUserSecrets<Program>();
+
+var botConfig = builder.Configuration.GetSection("BotConfiguration");
+var telegramBotToken = botConfig["Token"];
+// Register the Telegram Bot Client
+builder.Services.AddSingleton<ITelegramBotClient>(new TelegramBotClient(telegramBotToken));
 
 var app = builder.Build();
 
