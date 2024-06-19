@@ -19,6 +19,15 @@ var telegramBotToken = botConfig["Token"];
 // Register the Telegram Bot Client
 builder.Services.AddSingleton<ITelegramBotClient>(new TelegramBotClient(telegramBotToken));
 
+
+//Adding CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("TelegramBotCors", builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
