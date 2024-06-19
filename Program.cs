@@ -1,3 +1,4 @@
+using MedLog_TelegramBot.Services;
 using Microsoft.Extensions.Configuration;
 using Telegram.Bot;
 var builder = WebApplication.CreateBuilder(args);

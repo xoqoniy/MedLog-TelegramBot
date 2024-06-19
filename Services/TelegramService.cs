@@ -25,7 +25,7 @@ public class TelegramService
         }
     }
 
-    public async Task SendTestMessageAsync(long chatId, string message)
+    public async Task SendTextMessageAsync(long chatId, string message)
     {
         try
         {

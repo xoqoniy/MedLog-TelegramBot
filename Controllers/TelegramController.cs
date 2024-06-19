@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MedLog_TelegramBot.Services;
+using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -31,12 +32,12 @@ public class TelegramController : ControllerBase
     }
 
     [HttpPost("sendTestMessage")]
-    public async Task<IActionResult> SendTestMessage([FromQuery] long chatId, [FromQuery] string message)
+    public async Task<IActionResult> SendTextMessage([FromQuery] long chatId, [FromQuery] string message)
     {
         try
         {
             _logger.LogInformation($"Sending test message to chat ID {chatId} with message: {message}");
-            await _telegramService.SendTestMessageAsync(chatId, message);
+            await _telegramService.SendTextMessageAsync(chatId, message);
             _logger.LogInformation("Test message sent successfully.");
             return Ok("Test message sent successfully.");
         }
